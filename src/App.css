@@ -37,9 +37,17 @@
   }
 }
 
-.home-container{
-  border: 1px red solid;
-  min-height: 100vh;
+.home-page-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+.column-container{
+  min-height: 90vh;
+  min-width: 80vw;
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -52,27 +60,40 @@
   gap: 10px;
   margin-bottom: 20px;
   align-items: center;
+  align-content: center;
 }
 
 
 /* Wrapper for all timezone containers */
 .timezone-container-wrapper {
   display: flex;
+  min-width: 80vw;
   flex-wrap: wrap; /* Allow the boxes to wrap */
   justify-content: center;
-  align-items: center;
   align-items: stretch;
   gap: 10px
 }
 
 .timezone-container{
-  border: 1px BLUE solid;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
   flex-grow: 1;
+}
+
+.timezone-city {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.timezone-time {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 /* Palette 1 */
@@ -110,66 +131,66 @@
 
 /* Palette 2 */
 .palette-2 .timezone-container:nth-child(1) {
-  background-color: #4d1313; /* red */
+  background-color: #fbf8cc; 
 }
 
 .palette-2 .timezone-container:nth-child(2) {
-  background-color: #e88c1c; /* light orange */
+  background-color: #fde4cf; 
 }
 
 .palette-2 .timezone-container:nth-child(3) {
-  background-color: #bbc10e; /* yellow */
+  background-color: #ffcfd2 
 }
 
 .palette-2 .timezone-container:nth-child(4) {
-  background-color: #30ac17; /* light green */
+  background-color: #f1c0e8
 }
 
 .palette-2 .timezone-container:nth-child(5) {
-  background-color: #228d97; /* light blue */
+  background-color: #cfbaf0
 }
 
 .palette-2 .timezone-container:nth-child(6) {
-  background-color: #185dcb; /* light purple */
+  background-color: #a3c4f3
 }
 
 .palette-2 .timezone-container:nth-child(7) {
-  background-color: #463897; /* lavender */
+  background-color: #90dbf4
 }
 
 .palette-2 .timezone-container:nth-child(8) {
-  background-color: #9d5429; /* peach */
+  background-color: #8eecf5
 }
 
 /* Palette 3 */
 .palette-3 .timezone-container:nth-child(1) {
-  background-color: #5e0808; /* red */
+  background-color: #ae2012
 }
 
 .palette-3 .timezone-container:nth-child(2) {
-  background-color: #dd800e; /* light orange */
+  background-color: #005f73
 }
 
 .palette-3 .timezone-container:nth-child(3) {
-  background-color: #66692a; /* yellow */
+  background-color: #0a9396
 }
 
 .palette-3 .timezone-container:nth-child(4) {
-  background-color: #30fc07; /* light green */
+  background-color: #94d2bd
 }
 
 .palette-3 .timezone-container:nth-child(5) {
-  background-color: #0a8792; /* light blue */
+  background-color: #e9d8a6
 }
 
 .palette-3 .timezone-container:nth-child(6) {
-  background-color: #296ad4; /* light purple */
+  background-color: #ee9b00
 }
 
 .palette-3 .timezone-container:nth-child(7) {
-  background-color: #3a18fa; /* lavender */
+  background-color: #ca6702
 }
 
 .palette-3 .timezone-container:nth-child(8) {
-  background-color: #b94604; /* peach */
+  background-color: #9b2226
 }

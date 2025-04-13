@@ -1,6 +1,8 @@
 import '../App.css';
 import cityTimezoneMap from '../utils/cityTimezoneMap';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { DateTime } from "luxon"; // Import Luxon for time manipulation
+
 
 const Home = () => {
 
@@ -18,12 +20,31 @@ const Home = () => {
             const alreadyExists = timezones.some((tz) => tz.city === selectedCity);
             if (alreadyExists) return;
         
-            const tz = cityTimezoneMap[selectedCity];
-            setTimezones([...timezones, { city: selectedCity, tz }]);
+            const tz = cityTimezoneMap[selectedCity]; //get selected city from user input
+            const currentTime = DateTime.now().setZone(tz).toFormat("hh:mm a"); // Get current time in 12-hour AM/PM format
+            const currentDayAndDate = DateTime.now().setZone(tz).toFormat("ccc. dd'th'"); // Get day and date in the format "Wed. 26th"
+
+            setTimezones([...timezones, { city: selectedCity, tz, currentTime, currentDayAndDate }]);
             setSelectedCity("");// reset dropdown
           }
       };
       
+
+  // Update the time every minute for each timezone
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimezones((prevTimezones) =>
+        prevTimezones.map((tz) => {
+          const newTime = DateTime.now().setZone(tz.tz).toFormat("HH:mm a");
+          const newDayAndDate = DateTime.now().setZone(tz.tz).toFormat("ccc. dd'th'");
+
+          return { ...tz, currentTime: newTime, currentDayAndDate: newDayAndDate }; // Update the time
+        })
+      );
+    }, 60000); // Update every 60 seconds
+
+    return () => clearInterval(interval); // Clear the interval on unmount
+  }, []);
 
       //finds and deletes the timezone from the array
       const handleDeleteTimezone = (index) => {
@@ -37,8 +58,7 @@ const Home = () => {
       };
 
 return(
-    <div className="home-container">
-
+   <div className="home-page-container">
       <div className="action-bar">
         <select
             value={selectedCity}
@@ -66,12 +86,19 @@ return(
       </select>
 </div>
 
+   <div className="column-container">
+
 <div className={`timezone-container-wrapper ${selectedPalette}`}>
 
 {timezones.length > 0 ? (
   timezones.map((item, index) => (
     <div key={index} className="timezone-container">
-      {item.city}
+
+      <div className="timezone-city">{item.city}</div> 
+      <div className="timezone-time">{item.currentTime}</div>
+      <div className="timezone-date">{item.currentDayAndDate}</div>
+
+
       <button 
         onClick={() => handleDeleteTimezone(index)} 
         className="delete-btn"
@@ -87,7 +114,7 @@ return(
 </div>
     
     </div>
-
+</div>
 )
 
 }
