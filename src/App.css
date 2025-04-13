@@ -46,6 +46,15 @@
   gap: 10px
 }
 
+/* css for choose timezone and pallet buttons */
+.action-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+
 /* Wrapper for all timezone containers */
 .timezone-container-wrapper {
   display: flex;
