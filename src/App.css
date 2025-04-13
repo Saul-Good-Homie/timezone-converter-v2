@@ -75,13 +75,27 @@
 }
 
 .timezone-container{
+  border: 1px red solid;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  align-content: space-between;
+  min-height: 100%;
   gap: 10px;
   flex-grow: 1;
+  position: relative;
+
+}
+
+.timezone-card{
+  flex: 1;            /* takes available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .timezone-city {
@@ -164,7 +178,8 @@
 
 /* Palette 3 */
 .palette-3 .timezone-container:nth-child(1) {
-  background-color: #ae2012
+  background: #22C1C3;
+  background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
 }
 
 .palette-3 .timezone-container:nth-child(2) {
@@ -172,7 +187,8 @@
 }
 
 .palette-3 .timezone-container:nth-child(3) {
-  background-color: #0a9396
+  background: #22C1C3;
+  background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(250, 242, 242, 1) 100%);
 }
 
 .palette-3 .timezone-container:nth-child(4) {

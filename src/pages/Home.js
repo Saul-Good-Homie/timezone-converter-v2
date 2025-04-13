@@ -10,6 +10,7 @@ const Home = () => {
     const [selectedPalette, setSelectedPalette] = useState(""); // Track the selected palette
     const [selectedCity, setSelectedCity] = useState("");
 
+
     const handleAddTimezone = () => {
         if (timezones.length >= 8) {
           alert("You can only add up to 8 timezones.");
@@ -34,6 +35,16 @@ const Home = () => {
     const updatedTimezones = timezones.filter((_, i) => i !== index);
     setTimezones(updatedTimezones); // Update the state with the new timezone list
   };
+
+  // Function to format the city name with spaces between words
+  const formatCityName = (city) => {
+    // Only add spaces if the city name is in camelCase (does not have a space already)
+    if (!city.includes(" ")) {
+      return city.replace(/([A-Z])/g, ' $1').trim(); // Adds a space before each capital letter
+    }
+    return city; // Return the city as is if it already has spaces
+  };
+  
       
 
   // Update the time every minute for each timezone
@@ -73,6 +84,7 @@ const Home = () => {
     }
   }, []);
   
+  //adds and deletes params from url
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
   
@@ -92,11 +104,7 @@ const Home = () => {
     const newUrl = `${window.location.pathname}?${params.toString()}`;
     window.history.replaceState({}, "", newUrl);
   }, [timezones, selectedPalette]);
-  
-
-    //   const handleChoosePalette = (event) => {
-    //     setSelectedPalette(event.target.value); // Set the selected palette value
-    //   };
+    
 
       const handleChoosePalette = (event) => {
         const value = event.target.value;
@@ -116,22 +124,31 @@ const Home = () => {
 return(
    <div className="home-page-container">
       <div className="action-bar">
-        <select
-            value={selectedCity}
-            onChange={(e) => setSelectedCity(e.target.value)}
-            className="timezone-dropdown"
-        >
+
+    <label htmlFor="combo">Choose or type an option:</label>
+        <input
+            list="items"
+            name="combo"
+            id="combo"
+            value={selectedCity}  // Bind the selected city to the input
+            onChange={(e) => setSelectedCity(e.target.value)} // Update selectedCity state on change
+            placeholder="Search or select a city..."
+            className="timezone-search-input"
+        />
+        <datalist id="items">
             <option value="" disabled>Select a city</option>
-                {Object.keys(cityTimezoneMap).map((city) => (
-            <option key={city} value={city}>
-                {city}
-            </option>
+            {Object.keys(cityTimezoneMap).map((city) => (
+                <option key={city} value={city}>
+                    {formatCityName(city)}
+                    
+                </option>
             ))}
-        </select>
-        
+        </datalist>
+
         <button onClick={handleAddTimezone} className="action-buttons">
             Add
         </button>
+
 
               {/* Dropdown to select the palette */}
       <select onChange={handleChoosePalette} value={selectedPalette} className="palette-dropdown">
@@ -149,17 +166,18 @@ return(
 {timezones.length > 0 ? (
   timezones.map((item, index) => (
     <div key={index} className="timezone-container">
-
-      <div className="timezone-city">{item.city}</div> 
-      <div className="timezone-time">{item.currentTime}</div>
-      <div className="timezone-date">{item.currentDayAndDate}</div>
+        <div className="timezone-card"> 
+            <div className="timezone-city">{item.city}</div> 
+            <div className="timezone-time">{item.currentTime}</div>
+            <div className="timezone-date">{item.currentDayAndDate}</div>
+        </div>
 
 
       <button 
         onClick={() => handleDeleteTimezone(index)} 
         className="delete-btn"
       >
-        Delete
+        🗑️
       </button>
     </div>
   ))
