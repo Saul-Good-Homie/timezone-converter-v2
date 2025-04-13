@@ -28,6 +28,12 @@ const Home = () => {
             setSelectedCity("");// reset dropdown
           }
       };
+
+        // This function handles removing a timezone from the list
+  const handleDeleteTimezone = (index) => {
+    const updatedTimezones = timezones.filter((_, i) => i !== index);
+    setTimezones(updatedTimezones); // Update the state with the new timezone list
+  };
       
 
   // Update the time every minute for each timezone
@@ -46,15 +52,65 @@ const Home = () => {
     return () => clearInterval(interval); // Clear the interval on unmount
   }, []);
 
-      //finds and deletes the timezone from the array
-      const handleDeleteTimezone = (index) => {
-        const updatedTimezones = timezones.filter((_, i) => i !== index);
-        setTimezones(updatedTimezones); // Update the state with the new timezone list
-      };
+  //checks the URl params for palette
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+  
+    const paletteParam = params.get("palette");
+    if (paletteParam) setSelectedPalette(paletteParam);
+  
+    const citiesParam = params.get("cities");
+    if (citiesParam) {
+      const cityList = citiesParam.split(",");
+      const validCities = cityList.filter(city => cityTimezoneMap[city]);
+      const tzObjects = validCities.map(city => {
+        const tz = cityTimezoneMap[city];
+        const currentTime = DateTime.now().setZone(tz).toFormat("hh:mm a");
+        const currentDayAndDate = DateTime.now().setZone(tz).toFormat("ccc. dd'th'");
+        return { city, tz, currentTime, currentDayAndDate };
+      });
+      setTimezones(tzObjects);
+    }
+  }, []);
+  
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+  
+    if (timezones.length > 0) {
+      const cityList = timezones.map(tz => tz.city).join(",");
+      params.set("cities", cityList);
+    } else {
+      params.delete("cities");
+    }
+  
+    if (selectedPalette) {
+      params.set("palette", selectedPalette);
+    } else {
+      params.delete("palette");
+    }
+  
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, "", newUrl);
+  }, [timezones, selectedPalette]);
+  
 
+    //   const handleChoosePalette = (event) => {
+    //     setSelectedPalette(event.target.value); // Set the selected palette value
+    //   };
 
       const handleChoosePalette = (event) => {
-        setSelectedPalette(event.target.value); // Set the selected palette value
+        const value = event.target.value;
+        setSelectedPalette(value); // Set the selected palette value
+      
+        // Update URL
+        const params = new URLSearchParams(window.location.search);
+        if (value) {
+          params.set("palette", value);
+        } else {
+          params.delete("palette");
+        }
+        const newUrl = `${window.location.pathname}?${params.toString()}`;
+        window.history.replaceState({}, "", newUrl);
       };
 
 return(
