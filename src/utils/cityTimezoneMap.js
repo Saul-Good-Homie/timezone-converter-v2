@@ -1,6 +1,7 @@
 const cityTimezoneMap = {
     Seattle: "America/Los_Angeles",
     Phoenix: "America/Phoenix",
+    Denver: "America/Denver",
     Chicago: "America/Chicago",
     Atlanta: "America/New_York",
     NewYork: "America/New_York",

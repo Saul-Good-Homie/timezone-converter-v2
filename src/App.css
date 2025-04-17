@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+*{
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
 .App {
   text-align: center;
 }
@@ -43,6 +52,7 @@
   align-items: center;
   justify-content: center;
   align-content: center;
+  background-color: #f7f4f4;
 }
 
 .column-container{
@@ -51,7 +61,7 @@
   display: flex;
   justify-content: center;
   align-items: stretch;
-  gap: 10px
+  gap: 5px
 }
 
 /* css for choose timezone and pallet buttons */
@@ -64,6 +74,95 @@
 }
 
 
+.action-buttons{
+  appearance: none;
+  background-color: #2ea44f;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 4px;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.action-buttons:focus:not(:focus-visible):not(.focus-visible) {
+  box-shadow: none;
+  outline: none;
+}
+
+.action-buttons:hover {
+  background-color: #2c974b;
+}
+
+.action-buttons:focus {
+  box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+  outline: none;
+}
+
+.action-buttons:disabled {
+  background-color: #94d3a2;
+  border-color: rgba(27, 31, 35, .1);
+  color: rgba(255, 255, 255, .8);
+  cursor: default;
+}
+
+.action-buttons:active {
+  background-color: #298e46;
+  box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+}
+
+input[list] {
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #000000;
+  border-radius: 6px;
+}
+
+select,
+input {
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #333;
+  width: 25%;
+}
+
+
+select {
+  appearance: none; /* Removes native dropdown arrow in most browsers */
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1em;
+  padding-right: 2rem;
+
+}
+
+.delete-btn{
+background: none;
+color: white;
+border: none;
+padding: 8px;
+}
+
+.delete-btn:hover{
+  cursor: pointer;
+}
 /* Wrapper for all timezone containers */
 .timezone-container-wrapper {
   display: flex;
@@ -71,12 +170,12 @@
   flex-wrap: wrap; /* Allow the boxes to wrap */
   justify-content: center;
   align-items: stretch;
-  gap: 10px
+  /* gap: 10px */
 }
 
 .timezone-container{
-  border: 1px red solid;
-  border-radius: 5px;
+  /* border: 1px red solid; */
+  /* border-radius: 5px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -88,6 +187,24 @@
   position: relative;
 
 }
+
+@media (max-width: 768px) {
+  .column-container {
+    flex-direction: column; /* Stack vertically on small screens */
+    align-items: center;     /* Optional: center align items in column */
+  }
+
+  .timezone-container-wrapper {
+    flex-direction: column;  /* Stack timezones vertically if needed */
+    align-items: center;     /*Optional: center items */
+  }
+
+  .timezone-container {
+    width: 100%;         /* Full width on mobile */
+    max-width: 100%;     /* Prevent it from shrinking */
+  }
+}
+
 
 .timezone-card{
   flex: 1;            /* takes available space */
@@ -111,6 +228,8 @@
 }
 
 /* Palette 1 */
+
+
 .palette-1 .timezone-container:nth-child(1) {
   background-color: #ffadad; /* red */
 }
@@ -144,6 +263,7 @@
 }
 
 /* Palette 2 */
+
 .palette-2 .timezone-container:nth-child(1) {
   background-color: #fbf8cc; 
 }
@@ -177,36 +297,47 @@
 }
 
 /* Palette 3 */
+.palette-3{
+color: white;
+}
+
 .palette-3 .timezone-container:nth-child(1) {
-  background: #22C1C3;
-  background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+  background: #003f5c;
+  background: linear-gradient(0deg, #003f5c 0%, #58508d 100%);
 }
 
 .palette-3 .timezone-container:nth-child(2) {
-  background-color: #005f73
+  background-color: #58508d;
+  background: linear-gradient(0deg, #58508d 0%, #8a508f 100%);
 }
 
 .palette-3 .timezone-container:nth-child(3) {
-  background: #22C1C3;
-  background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(250, 242, 242, 1) 100%);
+  background: #8a508f;
+  background: linear-gradient(0deg, #8a508f 0%, #bc5090 100%);
 }
 
 .palette-3 .timezone-container:nth-child(4) {
-  background-color: #94d2bd
+  background-color: #bc5090;
+  background: linear-gradient(0deg, #bc5090 0%, #de5a79 100%);
 }
 
 .palette-3 .timezone-container:nth-child(5) {
-  background-color: #e9d8a6
+  background: #de5a79;
+  background: linear-gradient(0deg, #de5a79 0%, #ff6361 100%);
 }
 
 .palette-3 .timezone-container:nth-child(6) {
-  background-color: #ee9b00
+  background: #ff6361;
+  background: linear-gradient(0deg, #ff6361 0%, #ff8531 100%);
 }
 
 .palette-3 .timezone-container:nth-child(7) {
-  background-color: #ca6702
+  background: #ff8531;
+  background: linear-gradient(0deg, #ff8531 0%, #ffa600 100%);
 }
 
 .palette-3 .timezone-container:nth-child(8) {
-  background-color: #9b2226
+  background: #ffa600; 
+  background: linear-gradient(0deg, #ebc90b 0%, #e2f32b 100%);
+  
 }

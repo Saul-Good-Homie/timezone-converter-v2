@@ -52,7 +52,7 @@ const Home = () => {
     const interval = setInterval(() => {
       setTimezones((prevTimezones) =>
         prevTimezones.map((tz) => {
-          const newTime = DateTime.now().setZone(tz.tz).toFormat("HH:mm a");
+          const newTime = DateTime.now().setZone(tz.tz).toFormat("hh:mm a");
           const newDayAndDate = DateTime.now().setZone(tz.tz).toFormat("ccc. dd'th'");
 
           return { ...tz, currentTime: newTime, currentDayAndDate: newDayAndDate }; // Update the time
@@ -125,14 +125,14 @@ return(
    <div className="home-page-container">
       <div className="action-bar">
 
-    <label htmlFor="combo">Choose or type an option:</label>
+    <label htmlFor="combo">Choose or type an city:</label>
         <input
             list="items"
             name="combo"
             id="combo"
             value={selectedCity}  // Bind the selected city to the input
             onChange={(e) => setSelectedCity(e.target.value)} // Update selectedCity state on change
-            placeholder="Search or select a city..."
+            placeholder="Search..."
             className="timezone-search-input"
         />
         <datalist id="items">
