@@ -188,6 +188,10 @@ return(
 </div>
     
     </div>
+
+<footer>
+    Created by Saul who lives and works in Boise, ID. You should connect with them on <a href="https://www.linkedin.com/in/saulbelisle/">LinkedIn</a>
+</footer>
 </div>
 )
 
