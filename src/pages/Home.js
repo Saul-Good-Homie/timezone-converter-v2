@@ -2,6 +2,7 @@ import '../App.css';
 import cityTimezoneMap from '../utils/cityTimezoneMap';
 import React, { useEffect, useState } from "react";
 import { DateTime } from "luxon"; // Import Luxon for time manipulation
+import Bio from "../utils/bio"
 
 
 const Home = () => {
@@ -190,8 +191,10 @@ return(
     </div>
 
 <footer>
-    Created by Saul who lives and works in Boise, ID. You should connect with them on <a href="https://www.linkedin.com/in/saulbelisle/">LinkedIn</a>
+    {/* Created by Saul who lives and works in Boise, ID. You should connect with them on <a href="https://www.linkedin.com/in/saulbelisle/">LinkedIn</a> */}
+    <Bio />
 </footer>
+
 </div>
 )
 
